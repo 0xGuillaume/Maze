@@ -103,7 +103,7 @@ def main(stdscr):
             # Maze
             if args.m:
                 show.maze_screen()
-
+            
             attempt += 1
             break
         else:
