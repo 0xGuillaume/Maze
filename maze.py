@@ -13,7 +13,7 @@ class Maze:
     def __init__(self, row:int, column:int):
 
         # Configuration du labyrinthe
-        self._wall      = " 🏛️ " #"w"
+        self._wall      = " 🌳 " #"w"
         self._cell      = " 📍 " #"c"
         self._start     = " 🏁 " #"s"
         self._exit      = " 🏳️ " #"x"
@@ -85,15 +85,6 @@ class Maze:
         maze_str += "\n"
         
         return maze_str
-
-        """
-        for row in self._maze:
-            for c in row:
-                if c == self._wall: print(Fore.RED + c, end=" ")
-                elif c == self._cell: print(Fore.GREEN + c, end=" ")
-                elif c == self._start or c == self._exit: print(Fore.YELLOW + c, end=" ")
-        print("\n", Fore.RESET)    
-        """
 
     def _graph_init(self) -> list:
         """Dessine un graph avec les cellules non vides et voisins vides (cellule vide)"""
@@ -174,26 +165,12 @@ class Maze:
             return True
     
     def is_solvable(self) -> bool:
+        """Vrai ou Faux : Si on peut résoudre le labyrinthe"""
+
         return self._graph_is_solvable()
 
+    def solution(self) -> list:
+        """Retourne la solution du labyrinthe"""
 
-# -----------------------------------------------------------
+        return self._graph_solver()
 
-def main():
-    """Fonction de test"""
-
-    attempt = 0
-
-    while True:
-        maze = Maze(100, 100)
-        if maze.is_solvable():
-            print("OKKKKKKKKK!")
-            attempt += 1
-            break
-        else:
-            print("Non Ok")
-            attempt += 1
-    print(f"Taille : 1000, 1000 - Nombre de tentative : {attempt}")
-
-if __name__ == "__main__":
-    main()
